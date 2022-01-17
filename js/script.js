@@ -29,7 +29,7 @@ function generatePassword() {
     alert("Password cannot be created. Please enter desired password length between 8 - 128.");
     return null;
 
-  }
+ }
   if (isLowerCase === true && isUpperCase === true && IsNumeric === true && hasSpecialChars === true) {
     passwordCharacters += lowerCase += upperCase += numbers += specialChar;
   } else
@@ -37,10 +37,13 @@ function generatePassword() {
       passwordCharacters += upperCase += numbers += specialChar;
     } else
       if (isLowerCase === true && isUpperCase === true && IsNumeric === false && hasSpecialChars === true) {
-        passwordCharacters += lowerCase += specialChar;
+        passwordCharacters += lowerCase += upperCase += specialChar;
       } else
         if (isLowerCase === true && isUpperCase === true && IsNumeric === true && hasSpecialChars === false) {
           passwordCharacters += lowerCase += upperCase += numbers;
+        } else
+        if (isLowerCase === true && isUpperCase ===false && IsNumeric === true && hasSpecialChars === true) {
+          passwordCharacters += lowerCase += numbers += specialChar;
         } else
           if (isLowerCase === true && isUpperCase === false && IsNumeric === false && hasSpecialChars === false) {
             passwordCharacters += lowerCase;
@@ -53,10 +56,27 @@ function generatePassword() {
               } else
                 if (isLowerCase === false && isUpperCase === false && IsNumeric === false && hasSpecialChars === true) {
                   passwordCharacters += specialChar;
-                } else {
-                  window.alert("Password cannot be created. Please choose atleast one character type.")
-                }
-
+                } else
+                  if (isLowerCase === true && isUpperCase === true && IsNumeric === false && hasSpecialChars === false) {
+                    passwordCharacters += lowerCase += upperCase;
+                  } else
+                    if (isLowerCase === false && isUpperCase === false && IsNumeric === true && hasSpecialChars === true) {
+                      passwordCharacters += numbers += specialChar;
+                    } else
+                      if (isLowerCase === true && isUpperCase === false && IsNumeric === false && hasSpecialChars === true) {
+                        passwordCharacters += lowerCase += specialChar;
+                      } else
+                        if (isLowerCase === false && isUpperCase === true && IsNumeric === true && hasSpecialChars === false) {
+                          passwordCharacters += upperCase += numbers;
+                        } else
+                          if (isLowerCase === false && isUpperCase === true && IsNumeric === false && hasSpecialChars === true) {
+                            passwordCharacters += upperCase += specialChar;
+                          } else
+                            if (isLowerCase === true && isUpperCase === false && IsNumeric === true && hasSpecialChars === false) {
+                              passwordCharacters += lowerCase += numbers;
+                            } else {
+                              window.alert("Password cannot be created. Please choose atleast one character type.")
+                            }
   for (var i = 0; i < pwLength; i++) {
     userPassword += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
   }
